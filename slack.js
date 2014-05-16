@@ -20,12 +20,14 @@ function SlackChannel(token, channel) {
 
 SlackChannel.prototype.connect = function () {
   var self = this
+  self.opts.connectionTime = Date.now()
   return new Promise(function (resolve, reject) {
     login(self.opts.token).then(function (session) {
       self.opts.channelId = session.channels.filter(function (chan) {
         return chan.name === self.opts.channel
       })[0].id
       self.opts.users = session.users
+      self.opts.me = session.self.id
 
       var socket = new WebSocket(session.url)
       socket.once('open', function () {
@@ -36,8 +38,8 @@ SlackChannel.prototype.connect = function () {
 
       socket.on('message', function (raw) {
         var message = JSON.parse(raw)
-        console.log('message', message)
         if (message.type === 'message' &&
+          message.user !== self.opts.me &&
           message.channel === self.opts.channelId) {
           self.message(self.getUserById(message.user), message.text)
         }
