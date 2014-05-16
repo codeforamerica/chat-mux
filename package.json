@@ -1,14 +1,18 @@
 {
-  "name": "slack-portal",
+  "name": "chat-mux",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "irc-factory": "^1.7.0"
+    "irc": "^0.3.6",
+    "polyfill-promise": "^0.1.2",
+    "ws": "^0.4.31",
+    "pr-request": "^0.1.1"
   }
 }
