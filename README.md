@@ -14,6 +14,8 @@ requires: node.js, a server with websocket support (heroku works)
 git clone https://github.com/codeforamerica/chat-mux.git && cd chat-mux && npm install && npm start
 ```
 
+you also need some environment variables set: see `env.sample` for a shell script you can use, or use whatever other means of setting up your environment (like `heroku config:set foo=bar` for example)
+
 ## contributing
 pull requests welcome!
 
